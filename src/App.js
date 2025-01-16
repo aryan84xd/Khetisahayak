@@ -1,25 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme";
+import supabase from "./utils/superbaseClient";
+import Preheader from "./components/Preheader";
+import Home from "./pages/Home";
+import Auth from "./pages/Auth";
+import DashBoard from "./pages/DashBoard";
+import AddVehicle from "./pages/AddVehicle";
+const App = () => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-function App() {
+  useEffect(() => {
+    const fetchSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession(); // Fetch the initial session
+      setUser(session?.user || null);
+      setLoading(false);
+    };
+
+    fetchSession();
+
+    // Subscribe to auth state changes
+    const { subscription } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setUser(session?.user || null);
+      }
+    );
+
+    // Cleanup: Unsubscribe from the auth listener
+    return () => subscription?.unsubscribe && subscription.unsubscribe();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  console.log(user);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <Preheader />
+        <Routes>
+          <Route path="/" element={user ? <Home /> : <Navigate to="/auth" />}>
+            <Route path="dashboard" element={<DashBoard />} />
+            <Route path="addvehicle" element={<AddVehicle />} />
+          </Route>
+          <Route path="/auth" element={<Auth />} />
+        </Routes>
+      </ThemeProvider>
+    </Router>
   );
-}
+};
 
 export default App;
