@@ -12,7 +12,9 @@ import Preheader from "./components/Preheader";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import DashBoard from "./pages/DashBoard";
-import AddVehicle from "./pages/AddVehicle";
+import MyEquipment from "./pages/MyEquipment";
+
+
 const App = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -51,7 +53,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={user ? <Home /> : <Navigate to="/auth" />}>
             <Route path="dashboard" element={<DashBoard />} />
-            <Route path="addvehicle" element={<AddVehicle />} />
+            <Route path="myequipment" element={<MyEquipment />} />
           </Route>
           <Route path="/auth" element={<Auth />} />
         </Routes>

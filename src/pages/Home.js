@@ -18,7 +18,7 @@ import { Outlet, NavLink } from "react-router-dom";
 const Home = () => {
   const features = [
     { name: "Dashboard", icon: <DashboardIcon />, route: "/dashboard" },
-    { name: "Vehicles", icon: <AgricultureIcon />, route: "/addvehicle" },
+    { name: "Vehicles", icon: <AgricultureIcon />, route: "/myequipment" },
   ];
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md")); // Check for medium and smaller screens
@@ -70,8 +70,8 @@ const Home = () => {
         bgcolor="#f5f5f5"
         padding="20px"
         display="flex"
-        justifyContent="center"
-        alignItems="center"
+        // justifyContent="center"
+        // alignItems="center"
       >
         {/* This will render the component based on the nested routes */}
         <Outlet />
