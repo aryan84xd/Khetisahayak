@@ -7,12 +7,16 @@ import {
   Typography,
   Container,
   Box,
+  Select,
+  MenuItem,
+  Slider,
 } from "@mui/material";
 import supabase from "../utils/superbaseClient";
 
 export default function MyEquipment() {
   const [equipment, setEquipment] = useState({
-    name: "",
+    brand: "",
+    model: "",
     description: "",
     category: "",
     age_years: "",
@@ -20,6 +24,7 @@ export default function MyEquipment() {
     location: "",
     availability: true,
     for_rent: false,
+    condition: 5,
     image_urls: [], // Add this to initial state
   });
   const [images, setImages] = useState([]);
@@ -38,9 +43,9 @@ export default function MyEquipment() {
   };
 
   // Updated image upload function
-  const handleImageUpload = async (image, userId, equipmentName) => {
+  const handleImageUpload = async (image, userId, modelName) => {
     try {
-      const filePath = `${userId}/${equipmentName}/${image.name}`; // Use userId and equipmentName for the path
+      const filePath = `${userId}/${modelName}/${image.name}`; // Use userId and equipmentName for the path
 
       // Upload image to the storage bucket
       const { error } = await supabase.storage
@@ -78,19 +83,23 @@ export default function MyEquipment() {
       // Upload images first
       if (images.length > 0) {
         for (const image of images) {
-          const filePath = await handleImageUpload(image, userId, equipment.name);
+          const filePath = await handleImageUpload(
+            image,
+            userId,
+            equipment.model
+          );
           uploadedUrls.push(filePath);
         }
       }
 
       // Insert equipment with URLs included
-      const { error } = await supabase
-        .from("user_equipment")
-        .insert([{ 
-          ...equipment, 
+      const { error } = await supabase.from("user_equipment").insert([
+        {
+          ...equipment,
           user_id: userId,
-          image_urls: uploadedUrls // Store paths in image_urls field
-        }]);
+          image_urls: uploadedUrls, // Store paths in image_urls field
+        },
+      ]);
 
       if (error) throw error;
 
@@ -98,7 +107,8 @@ export default function MyEquipment() {
 
       // Reset form
       setEquipment({
-        name: "",
+        brand: "",
+        model: "",
         description: "",
         category: "",
         age_years: "",
@@ -107,6 +117,7 @@ export default function MyEquipment() {
         availability: true,
         for_rent: false,
         image_urls: [],
+        condition: 5,
       });
       setImages([]);
     } catch (error) {
@@ -127,9 +138,18 @@ export default function MyEquipment() {
           <TextField
             fullWidth
             margin="normal"
-            label="Name"
-            name="name"
-            value={equipment.name}
+            label="Brand"
+            name="brand"
+            value={equipment.brand}
+            onChange={handleChange}
+            required
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            label="Model"
+            name="model"
+            value={equipment.model}
             onChange={handleChange}
             required
           />
@@ -143,14 +163,45 @@ export default function MyEquipment() {
             value={equipment.description}
             onChange={handleChange}
           />
-          <TextField
+          <Select
             fullWidth
             margin="normal"
             label="Category"
             name="category"
             value={equipment.category}
             onChange={handleChange}
-          />
+            displayEmpty
+          >
+            <MenuItem value="" disabled>
+              Select a Category
+            </MenuItem>
+            <MenuItem value="Harvester">Harvester</MenuItem>
+            <MenuItem value="Ploughs">Ploughs</MenuItem>
+            <MenuItem value="Harrows">Harrows</MenuItem>
+            <MenuItem value="Rotavators">Rotavators</MenuItem>
+            <MenuItem value="Seed Drills">Seed Drills</MenuItem>
+            <MenuItem value="Transplanters">Transplanters</MenuItem>
+            <MenuItem value="Sprinkler Systems">Sprinkler Systems</MenuItem>
+            <MenuItem value="Drip Irrigation Systems">
+              Drip Irrigation Systems
+            </MenuItem>
+            <MenuItem value="Combine Harvesters">Combine Harvesters</MenuItem>
+            <MenuItem value="Threshers">Threshers</MenuItem>
+            <MenuItem value="Sickle and Scythe">Sickle and Scythe</MenuItem>
+            <MenuItem value="Sprayers">Sprayers</MenuItem>
+            <MenuItem value="Dusters">Dusters</MenuItem>
+            <MenuItem value="Grain Dryers">Grain Dryers</MenuItem>
+            <MenuItem value="Chaff Cutters">Chaff Cutters</MenuItem>
+            <MenuItem value="Trailers">Trailers</MenuItem>
+            <MenuItem value="Tractors">Tractors</MenuItem>
+            <MenuItem value="Power Tillers">Power Tillers</MenuItem>
+            <MenuItem value="Sugarcane Harvesters">
+              Sugarcane Harvesters
+            </MenuItem>
+            <MenuItem value="Rice Combine Harvesters">
+              Rice Combine Harvesters
+            </MenuItem>
+          </Select>
           <TextField
             fullWidth
             margin="normal"
@@ -160,6 +211,23 @@ export default function MyEquipment() {
             value={equipment.age_years}
             onChange={handleChange}
           />
+          <Box padding={2} border={1} borderColor={"grey.500"}>
+            <Typography id="equipment-condition-slider" gutterBottom>
+              Equipment Condition (1-10)
+            </Typography>
+            <Slider
+              value={equipment.condition} // Current value of the slider
+              onChange={(event, newValue) =>
+                handleChange({ target: { name: "condition", value: newValue } })
+              } // Update state
+              aria-labelledby="equipment-condition-slider"
+              valueLabelDisplay="auto" // Display the value as a label
+              step={1} // Increment step
+              marks // Add marks for each step
+              min={1} // Minimum value
+              max={10} // Maximum value
+            />
+          </Box>
           <TextField
             fullWidth
             margin="normal"

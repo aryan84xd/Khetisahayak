@@ -12,7 +12,8 @@ import Preheader from "./components/Preheader";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import DashBoard from "./pages/DashBoard";
-import MyEquipment from "./pages/MyEquipment";
+import Register from "./pages/Register";
+import Search from "./pages/Search";
 
 
 const App = () => {
@@ -53,7 +54,8 @@ const App = () => {
         <Routes>
           <Route path="/" element={user ? <Home /> : <Navigate to="/auth" />}>
             <Route path="dashboard" element={<DashBoard />} />
-            <Route path="myequipment" element={<MyEquipment />} />
+            <Route path="register" element={<Register />} />
+            <Route path="search" element={<Search />} />
           </Route>
           <Route path="/auth" element={<Auth />} />
         </Routes>

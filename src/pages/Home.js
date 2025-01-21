@@ -10,15 +10,17 @@ import {
   useTheme,
 } from "@mui/material";
 import {
-  Agriculture as  AgricultureIcon,
+  Add as AddIcon,
   Dashboard as DashboardIcon,
+  Search as SearchIcon,
 } from "@mui/icons-material";
 import { Outlet, NavLink } from "react-router-dom";
 
 const Home = () => {
   const features = [
     { name: "Dashboard", icon: <DashboardIcon />, route: "/dashboard" },
-    { name: "Vehicles", icon: <AgricultureIcon />, route: "/myequipment" },
+    { name: "Search", icon: <SearchIcon />, route: "/search" },
+    { name: "Register", icon: <AddIcon />, route: "/register" },
   ];
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md")); // Check for medium and smaller screens
