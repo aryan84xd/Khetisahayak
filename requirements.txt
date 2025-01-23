@@ -1,0 +1,9 @@
+langchain
+huggingface-hub
+flask
+flask-cors
+python-dotenv
+ibm-watsonx-ai
+langchain_community
+langchain_ibm
+sentence-transformers

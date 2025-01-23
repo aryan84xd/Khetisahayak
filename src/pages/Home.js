@@ -13,6 +13,7 @@ import {
   Add as AddIcon,
   Dashboard as DashboardIcon,
   Search as SearchIcon,
+  FaceRetouchingNatural as FaceRetouchingNaturalIcon,
 } from "@mui/icons-material";
 import { Outlet, NavLink } from "react-router-dom";
 
@@ -21,6 +22,7 @@ const Home = () => {
     { name: "Dashboard", icon: <DashboardIcon />, route: "/dashboard" },
     { name: "Search", icon: <SearchIcon />, route: "/search" },
     { name: "Register", icon: <AddIcon />, route: "/register" },
+    { name: "Ask Sahayak", icon: <FaceRetouchingNaturalIcon />, route: "/asksahayak" },
   ];
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md")); // Check for medium and smaller screens

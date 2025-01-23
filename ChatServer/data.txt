@@ -1,0 +1,200 @@
+Question,Answer
+"What should farmers always use based on soil tests?",Farmers should always use appropriate fertilizer in the right quantity based on soil tests.
+"What should farmers use to maintain soil fertility?",Farmers must use organic manures to maintain the fertility of the soil.
+"Where should fertilizers be applied for maximum benefit?",Fertilizers should always be applied in the root zone instead of broadcasting.
+"What is the judicious use of phosphatic fertilizers for?",Phosphatic fertilizers are used for proper root/shoot development and timely crop maturityespecially legumes.
+"What should be used to reclaim acidic soil?",To reclaim acidic soilfarmers should use lime.
+"What should be used for saline or usar soil?",For saline or usar soilfarmers should use gypsum.
+"How can farmers adopt Participatory Organic Guarantee System (PGS  India) Certification?",Farmers can form a group of at least 5 and register with the nearest Regional Council or Centre of Organic Farming.
+"What assistance does ISOPOM provide for gypsum, pyrite, lime, or dolomite?",ISOPOM provides Rs 750 per hectare for the supply of gypsum pyrite lime or dolomite.
+"What assistance does ISOPOM provide for micronutrient elements in deficient areas?",ISOPOM provides Rs 500 per hectare for the supply of micronutrient elements in deficient areas.
+"What financial assistance is provided under the National Horticulture Mission for adopting organic farming?",The National Horticulture Mission provides Rs 10000 per hectare for adopting organic farming.
+"What assistance does the National Horticulture Mission offer for a Vermi-Compost unit?",The National Horticulture Mission provides Rs 30000 per unit for a Vermi-Compost unit (for 1-hectare area).
+"What financial assistance is offered under the Work Plan Organic Farming Scheme for a Vermi-Compost unit?",The Work Plan Organic Farming Scheme provides Rs 2500 per unit for a Vermi-Compost unit.
+"What assistance is provided under the Work Plan Organic Farming Scheme for Biodynamic Compost?",The Work Plan Organic Farming Scheme provides Rs 250 per unit for Biodynamic Compost.
+"What assistance does the Work Plan Organic Farming Scheme provide for C.P.P. Culture Units?",The Work Plan Organic Farming Scheme provides Rs 250 per unit for C.P.P. Culture Units.
+"What financial assistance is offered for Polythene Vermi Beds under the Work Plan Organic Farming Scheme?",The Work Plan Organic Farming Scheme provides Rs 5000 per unit for Polythene Vermi Beds.
+"What assistance does the Work Plan Organic Farming Scheme provide for Integrated Nutrient Management?",The Work Plan Organic Farming Scheme provides Rs 1000 per hectare for the promotion of Integrated Nutrient Management.
+"What does the Soil Survey & Soil Testing scheme provide for testing soil samples of NPK?",The Soil Survey & Soil Testing scheme provides Rs 15 per sample for testing soil samples of NPK.
+"What is the cost for testing micro nutrients under the Soil Survey & Soil Testing scheme?",The cost for testing micro nutrients under the Soil Survey & Soil Testing scheme is Rs 200 per sample.
+"What is the cost for PH, EC, Physical & Chemical analysis under the Soil Survey & Soil Testing scheme?",The cost for PH EC Physical & Chemical analysis is Rs 250 per sample under the Soil Survey & Soil Testing scheme.
+"What is the cost for water testing under the Soil Survey & Soil Testing scheme?",The cost for water testing under the Soil Survey & Soil Testing scheme is Rs 100 per sample.
+"What assistance does the National Project on Management of Soil Health and Fertility provide for promoting organic manuring?",It provides Rs 500 per hectare for promoting the use of organic manuring.
+"What financial assistance is provided for supplying lime/basic slag for reclaiming acidic soil under the National Project on Management of Soil Health and Fertility?",It provides Rs 500 per hectare at 25% of cost for supplying lime/basic slag.
+"What assistance does the National Project on Management of Soil Health and Fertility provide for promoting micronutrient elements?",It provides Rs 500 per hectare for the promotion and distribution of micronutrient elements.
+"What subsidy is offered for establishing a compost unit from fruit and vegetable waste/agricultural waste under the National Project on Organic Farming?",A subsidy of 33% on the total financial outlay up to Rs 60 lakh is offered for establishing a compost unit.
+"What subsidy is provided for establishing a bio fertilizer and/or bio pesticide unit under the National Project on Organic Farming?",A subsidy of 25% on the total financial outlay limited to Rs 40 lakh is provided for establishing a bio fertilizer and/or bio pesticide unit.
+"What assistance does the Integrated Cereals Development Programme provide for micro nutrients in wheat, pulses, and rice?",It provides 50% cost assistance limited to Rs 500 per hectare for micro nutrients in wheat pulses and rice.
+"What assistance does the Oilseed Production Programme provide for the supply of micro nutrients in deficient areas?",It provides assistance at 50% of the cost or Rs 500 per hectare whichever is less.
+"What assistance does the Centrally Sponsored Sugar Cane Development Scheme provide for distribution of gypsum, micro nutrients, and green manuring?",It provides 50% of the cost limited to Rs 1000 per hectare for distribution of gypsum micro nutrients and green manuring.
+"Whom should I contact for agricultural assistance?",Contact the nearest office of the Taluka Agriculture Officee Sub-divisional Agriculture Officer District Superintending Agriculture Officer or Divisional Joint Director of Agriculture.
+
+"What is the website of the Agriculture Department?",The website of the Agriculture Department is www.mahaagri.gov.in.
+"What is the toll-free number for the Kisan Call Center?",The toll-free number for the Kisan Call Center is 1800  180  1551.
+"What should farmers do regarding seed use?",Farmers should use recommended varieties of seeds based on local climate and adhere to recommended seed rates and gaps.
+"How often should seeds of wheat, paddy, barley, pulses, and oilseeds be replaced?",Replace these seeds once every three years except for arhar rapeseed mustarand sunflower which should be replaced every two years.
+"How often should hybrid/BT seeds be replaced?",Hybrid/BT seeds should be replaced every year.
+"Where should farmers procure their seeds?",Farmers should procure certified seeds from authorized agencies.
+"How should seeds be stored?",Seeds should be stored in a cool dry and clean place.
+"What type of seeds should farmers use for sowing?",Farmers should always use treated seeds for sowing.
+"What should farmers test before sowing seeds?",Farmers should test seeds for purity quality and germination before sowing.
+"What assistance do farmers receive for Paddy and Wheat seeds?",Farmers receive 50% of the cost or Rs 5 per kg whichever is less under the Integrated Cereals Development Programme.
+"What is the assistance for Bajra, Sorghum, Ragi, and Barley seeds?",Farmers receive 50% of the cost or Rs 8 per kg whichever is less for these seeds under the Integrated Cereal Development Programme.
+"What assistance do farmers receive for hybrid Bajra/Sorghum seeds?",Farmers receive Rs 10 for hybrid Bajra/Sorghum seeds under the Integrated Cereal Development Programme.
+"What assistance do farmers receive for all pulses?",Farmers receive 50% of the cost or Rs 12 per kg whichever is less under the National Food Security Mission.
+"What assistance do farmers receive for oilseeds and Maize?",Farmers receive 50% of the cost or Rs 12 per kg whichever is less under the Integrated Scheme on Oilseeds Pulses Oilpal and Maize (ISOPOM).
+"What is the assistance for Oil-palm seedlings?",Farmers receive 85% of the cost of oil-palm sprouts capped at Rs 1000 per hectare under the Oil Palm Area Expansion Programme (RKVY).
+"What assistance do farmers receive for certified seeds of cotton?",Farmers receive Rs 20 for certified seeds of cotton under the Cotton Technology Mission.
+"What assistance do farmers receive for Jute and Mesta seeds?",Farmers receive 50% of the cost or Rs 12 per kg whichever is less for Jute and Mesta seeds under the Jute and Mesta Technology Mission.
+"What is the assistance for seed treatment?",Farmers receive a 25% subsidy limited to Rs 50 per hectare under the State Government of Maharashtra.
+"What is the assistance for cultivation costs during the gestation period for oil palm?",Farmers receive Rs 20000 per hectare over 4 years under the Oil Palm Area Expansion Programme.
+"What assistance do farmers receive for producing foundation or certified seeds of cotton?",Farmers receive Rs 50 or 50% of cost for foundation seeds and Rs 15 or 25% of cost for certified seeds under the Cotton Technology Mission.
+"What is the assistance for boosting seed production in the private sector?",There is a 25% credit-linked back-ended capital subsidy limited to Rs 25 lakh per unit.
+"What assistance do farmers receive for certified seed production?",Farmers receive Rs 1000 per quintal for certified seed production under the Oilseed Production Programme.
+"What assistance do farmers receive for seed storage bins?",Farmers receive 25% of the cost subject to a maximum of Rs 2000 for a 20 quintal capacity seed storage bin.
+"What is the assistance for seed storage bins of 10 quintal capacity?",Farmers receive 25% of the cost subject to a maximum of Rs 1000 with special rates for SC/ST farmers.
+"What assistance do farmers receive for the distribution of certified seeds?",Farmers receive 50% of the cost of all crop groups or Rs 1200 per quintal whichever is less under the Oilseed Production Programme.
+"What is the assistance for certified and foundation seed production?",Farmers receive 10% of the cost limited to Rs 4000 per hectare under the Sustainable Development of Sugarcane-based Cropping System Programme.
+"How much assistance do farmers receive for Seed Minikits of Jowar and other millets?",Farmers receive Rs 200 for a 4 kg Minikit under the INSIMP.
+"How much assistance do farmers receive for Seed Minikits of Bajra?",Farmers receive Rs 250 for a 1.5 kg Minikit under the INSIMP.
+"Whom should farmers contact for assistance?",Farmers should contact the nearest Office of Taluka Agriculture Officer Sub-divisional Agriculture Officer or District Superintending Agriculture Officer.
+
+"Where can farmers find more information about agriculture assistance?",Farmers can visit the Agriculture Department's website at www.mahaagri.gov.in.
+"What is the toll-free number for the Kisan Call Center?",The toll-free number for the Kisan Call Center is 1800  180  1551.
+"What should farmers do to conserve soil and water?",Farmers should conserve soil and water through good agricultural practices harvest rainwater by constructing check dams and ponds adopt crop diversification seed production and nursery raising in waterlogged areas and implement drip and sprinkler irrigation systems to save 30-37% water and enhance crop quality and productivity.
+"What assistance do farmers receive for digging a pond or well?",Farmers receive assistance limited to Rs. 60000 under the Rainfed Area Development Programme.
+"What is the assistance for tube wells?",Farmers receive Rs. 15000 to Rs. 25000 per farm family under the Rainfed Area Development Programme.
+"What assistance is available for procurement of lift irrigation systems?",Farmers receive Rs. 10000 per farm family under the Rainfed Area Development Programme.
+"What is the assistance for pipes to carry water from the source?",Farmers receive Rs. 15000 to carry water from the source to the field up to 800 meters under NFSM-Pulses and ISOPOM.
+"What assistance do farmers receive for drip irrigation systems for oil palm?",Farmers receive Rs. 12450 per farmer for a drip irrigation system (9 meter x 9 meter cropping density) under the Oil Palm Area Expansion Programme (RKVY).
+"What assistance is available for diesel pump sets for oil palm?",Farmers receive Rs. 10000 per set under the Oil Palm Area Expansion Programme (RKVY).
+"What is the assistance for bore-wells?",Farmers receive 100% assistance limited to Rs. 30000 under the Extending Green Revolution to Eastern India programme.
+"What is the assistance for shallow tube wells?",Farmers receive 100% assistance limited to Rs. 12000 under the Extending Green Revolution to Eastern India programme.
+"What assistance do farmers receive for pump sets?",Farmers receive 50% assistance subject to a maximum of Rs. 10000 under the Extending Green Revolution to Eastern India programme.
+"What is the assistance for seed storage bins of 10 quintal capacity?",Farmers receive 25% of the cost subject to a maximum of Rs 1000 with special rates for SC/ST farmers.
+"What assistance do farmers receive for the distribution of certified seeds?",Farmers receive 50% of the cost of all crop groups or Rs 1200 per quintal whichever is less under the Oilseed Production Programme.
+"What is the assistance for certified and foundation seed production?",Farmers receive 10% of the cost limited to Rs 4000 per hectare under the Sustainable Development of Sugarcane-based Cropping System Programme.
+"How much assistance do farmers receive for Seed Minikits of Jowar and other millets?",Farmers receive Rs 200 for a 4 kg Minikit under the INSIMP.
+"How much assistance do farmers receive for Seed Minikits of Bajra?",Farmers receive Rs 250 for a 1.5 kg Minikit under the INSIMP.
+"Whom should farmers contact for assistance?",Farmers should contact the nearest Office of Taluka Agriculture Officer Sub-divisional Agriculture Officer or District Superintending Agriculture Officer.
+
+"Where can farmers find more information about agriculture assistance?",Farmers can visit the Agriculture Department's website at www.mahaagri.gov.in.
+"What is the toll-free number for the Kisan Call Center?",The toll-free number for the Kisan Call Center is 1800  180  1551.
+"What should farmers do to conserve soil and water?",Farmers should conserve soil and water through good agricultural practices harvest rainwater by constructing check dams and ponds adopt crop diversification seed production and nursery raising in waterlogged areas and implement drip and sprinkler irrigation systems to save 30-37% water and enhance crop quality and productivity.
+"What assistance do farmers receive for digging a pond or well?",Farmers receive assistance limited to Rs. 60000 under the Rainfed Area Development Programme.
+"What is the assistance for tube wells?",Farmers receive Rs. 15000 to Rs. 25000 per farm family under the Rainfed Area Development Programme.
+"What assistance is available for procurement of lift irrigation systems?",Farmers receive Rs. 10000 per farm family under the Rainfed Area Development Programme.
+"What is the assistance for pipes to carry water from the source?",Farmers receive Rs. 15000 to carry water from the source to the field up to 800 meters under NFSM-Pulses and ISOPOM.
+"What assistance do farmers receive for drip irrigation systems for oil palm?",Farmers receive Rs. 12450 per farmer for a drip irrigation system (9 meter x 9 meter cropping density) under the Oil Palm Area Expansion Programme (RKVY).
+"What assistance is available for diesel pump sets for oil palm?",Farmers receive Rs. 10000 per set under the Oil Palm Area Expansion Programme (RKVY).
+"What is the assistance for bore-wells?",Farmers receive 100% assistance limited to Rs. 30000 under the Extending Green Revolution to Eastern India programme.
+"What is the assistance for shallow tube wells?",Farmers receive 100% assistance limited to Rs. 12000 under the Extending Green Revolution to Eastern India programme.
+"What assistance do farmers receive for pump sets?",Farmers receive 50% assistance subject to a maximum of Rs. 10000 under the Extending Green Revolution to Eastern India programme.
+"What is the assistance for inwell boring?",Farmers receive Rs. 20000 limit for inwell boring under the Extending Green Revolution to Eastern India programme.
+"What is the assistance for pipelines?",Farmers receive Rs. 20000 limit per 300 meters for pipelines under the Extending Green Revolution to Eastern India programme.
+"What assistance do farmers receive for bullock carts?",Farmers receive Rs. 15000 limit for bullock carts under SCP TSP & OTSP.
+"What is the assistance for repairing old wells?",Farmers receive Rs. 30000 limit for repairing old wells under SCP TSP & OTSP.
+"Whom should farmers contact for assistance?",Farmers should contact the nearest Office of Taluka Agriculture Officer Sub-divisional Agriculture Officer or District Superintending Agriculture Officer.
+
+"Where can farmers find more information about agriculture assistance?",Farmers can visit the Agriculture Department's website at www.mahaagri.gov.in.
+"What is the toll-free number for the Kisan Call Center?",The toll-free number for the Kisan Call Center is 1800  180  1551.
+"What should farmers do to access training and information?",Farmers should tune into agriculture-related programmes on Doordarshan FM Radio Stations or private channels to get the latest knowledge. They can contact the nearest Kisan Call Centre (1800-180-1551) for specific queries. Students with qualifications in Agriculture can provide extension services to farmers after receiving free training. Farmers are encouraged to participate in exposure visits, run a Farm School, and access the Farmers' Portal for location-specific information.
+"What assistance do farmers receive for training in seed production and technology?",Farmers receive Rs. 15000 per group for training of 50-150 farmers under the Seed Village programme.
+"What assistance is available for training farmers in recognized institutes?",Farmers receive Rs. 5200 per farmer per month for stipend boarding lodging and transportation costs under the Post Harvest Technology scheme.
+"What assistance is available for training on plant protection measures?",Farmers receive Rs. 152100 for training groups of 40 farmers under the Plant Protection scheme.
+"What assistance is available for 2-day training on vegetable production?",Farmers receive Rs. 1500 per training per farmer excluding transport under the Vegetable Initiative for Urban Clusters.
+"What assistance is available for farmers' study tours?",Farmers receive Rs. 50000 per batch for 50 farmers under the RKVY for oil palm program area expansion.
+"What is the assistance for training farmers outside the state?",Farmers receive Rs. 1000 per farmer per day which includes transportation boarding and lodging up to 50 man-days per Block under the ATMA Scheme.
+"What is the assistance for training farmers within the state?",Farmers receive Rs. 750 per farmer per day which includes transportation boarding and lodging for 100 man-days per Block under the ATMA Scheme.
+"What assistance is available for front-line demonstrations by soil testing laboratories?",Farmers receive Rs. 20000 per demonstration under the National Project on Management of Soil Health & Fertility.
+"What assistance is available for micro-irrigation demonstrations?",Farmers receive 75% of the total cost as a subsidy for micro-irrigation demonstrations in 0.5 hectares per beneficiary under the National Mission on Micro Irrigation.
+"What assistance is available for visits of farmers to model farms or institutes?",Farmers receive 50% of the cost limited to Rs. 50000 for 40 sugarcane grower farmers under the Seed Village programme.
+"Whom should farmers contact for training assistance?",Farmers should contact the nearest Office of Taluka Agriculture Officer Sub-divisional Agriculture Officer or District Superintending Agriculture Officer.
+
+"Where can farmers find more information about agriculture assistance?",Farmers can visit the Agriculture Department's website at www.mahaagri.gov.in.
+"What is the toll-free number for the Kisan Call Center?",The toll-free number for the Kisan Call Center is 1800  180  1551.
+"What should farmers do to conserve water through irrigation?",Farmers should conserve soil and water through good agricultural practices harvest rainwater by constructing check dams and ponds adopt crop diversification and utilize drip and sprinkler irrigation systems.
+"What assistance is available for digging ponds or wells?",Farmers receive limited assistance of Rs. 60000 for digging ponds or wells under the Rainfed Area Development Programme.
+"What assistance is available for tube wells?",Farmers receive Rs. 15000 to Rs. 25000 per farm family for tube wells under the Rainfed Area Development Programme.
+"What assistance is available for lift irrigation systems?",Farmers receive Rs. 10000 per farm family for the procurement of lift irrigation systems under the Rainfed Area Development Programme.
+"What assistance is available for pipes to carry water from the source to the field?",Farmers receive Rs. 15000 for pipes to carry water from the source to the field up to 800 meters under NFSM-Pulses and ISOPOM.
+"What assistance is available for drip irrigation systems for oil palm?",Farmers receive Rs. 12450 per farmer for drip irrigation systems for oil palm (9m x 9m cropping density) under the Oil Palm Area Expansion Program (RKVY).
+"What assistance is available for diesel pump sets for oil palm?",Farmers receive Rs. 10000 per set for diesel pump sets for oil palm under the Oil Palm Area Expansion Program (RKVY).
+"What assistance is available for bore-wells?",Farmers receive 100% assistance limited to Rs. 30000 for bore-wells under the Extending Green Revolution to Eastern India initiative.
+"What assistance is available for shallow tube wells?",Farmers receive 100% assistance limited to Rs. 12000 for shallow tube wells under the Extending Green Revolution to Eastern India initiative.
+"What assistance is available for pump sets?",Farmers receive 50% assistance subject to a maximum of Rs. 10000 for pump sets under the Extending Green Revolution to Eastern India initiative.
+"What assistance is available for inwell boring?",Farmers receive Rs. 20000 as a limit for inwell boring under the Extending Green Revolution to Eastern India initiative.
+"What assistance is available for pipelines?",Farmers receive Rs. 20000 as a limit for pipelines per 300 meters under the Extending Green Revolution to Eastern India initiative.
+"What assistance is available for old well-repairing?",Farmers receive Rs. 10000 as a limit for old well-repairing under the Extending Green Revolution to Eastern India initiative.
+"What assistance is available for water-saving irrigation technologies?",Farmers receive 50% assistance for water-saving irrigation technologies like drip irrigation and sprinkler systems under the Pradhan Mantri Krishi Sinchai Yojana.
+"What should farmers do to improve soil health?",Farmers should adopt soil testing use organic fertilizers rotate crops apply mulching and implement cover cropping to improve soil health.
+"What assistance is available for soil health management?",Farmers receive 50% assistance limited to Rs. 20000 for soil health management under the Soil Health Management scheme.
+"What assistance is available for organic farming practices?",Farmers receive 50% assistance limited to Rs. 10000 per acre for organic farming practices under the National Programme for Organic Production.
+"What assistance is available for bio-fertilizers?",Farmers receive 50% assistance for bio-fertilizers limited to Rs. 5000 under the National Mission on Sustainable Agriculture.
+"What assistance is available for vermi-compost production?",Farmers receive 50% assistance limited to Rs. 50000 for establishing vermi-compost production units under the National Mission on Sustainable Agriculture.
+"What assistance is available for the development of farm ponds?",Farmers receive 50% assistance limited to Rs. 20000 for farm ponds under the Pradhan Mantri Krishi Sinchai Yojana.
+"What assistance is available for crop diversification?",Farmers receive 30% assistance limited to Rs. 50000 for crop diversification under the Pradhan Mantri Krishi Sinchai Yojana.
+"What assistance is available for fencing?",Farmers receive 50% assistancelimited to Rs. 20000 for fencing under the RKVY scheme.
+"What assistance is available for farm ponds?",Farmers receive 50% assistance limited to Rs. 20000 for farm ponds under the RKVY scheme.
+"What assistance is available for vermi-compost?",Farmers receive 50% assistance limited to Rs. 50000 for establishing vermi-compost units under the RKVY scheme.
+"What should farmers do regarding machinery use?",Farmers should use appropriate machinery as per holding size and crop type.
+"How can farmers share expensive equipment?",Farmers can use expensive equipment by custom hiring or sharing in groups.
+"What practices conserve resources in farming?",Farmers should conserve resources by using zero-till seed drills and laser land levelers.
+"Where can farmers learn about machinery use?",Farmers should learn proper use and maintenance through training institutes and KVKs.
+"What assistance is available for tractors up to 40hp?",Farmers receive Rs. 45000 or 25% of the cost for tractors up to 40hp under MMA.
+"What assistance is available for power tillers?",Farmers receive Rs. 45000 or 40% of the cost for power tillers (8 BHP and above).
+"What assistance is available for manually operated implements?",Farmers receive Rs. 2000 or 25% of the cost for manually operated implements under MMA.
+"What assistance is available for animal-driven implements?",Farmers receive Rs. 2500 limit or 25% of the cost for animal-driven implements under MMA.
+"What assistance is available for Cono weeders?",Farmers receive Rs. 3000 or 50% of the cost for Cono weeders under NFSM.
+"What assistance is available for pump sets up to 10hp?",Farmers receive Rs. 10000 or 50% of the cost for pump sets up to 10hp under NFSM.
+"What assistance is available for improved farm implements?",Farmers receive 50% of the cost limited to Rs. 2500 per implement under Oilseed Production Programme.
+"What assistance is available for P.P. equipment?",Farmers receive 50% of the cost limited to Rs. 800 per equipment under Oilseed Production Programme.
+"What assistance is available for multi-crop threshers?",Farmers receive 50% of the cost limited to Rs. 24000 per unit under Oilseed Production Programme.
+"What assistance is available for millet crop processing units?",Farmers receive Rs. 4 lakh for setting up primary and secondary processing units under INSIMP.
+"Whom should farmers contact for assistance?",Farmers should contact the nearest Office of Taluka Agriculture Officer for assistance.
+
+"Where can farmers find more information about agriculture?",Farmers can visit the Agriculture Department's website at www.mahaagri.gov.in.
+"What is the Kisan Call Center number?",Farmers can call the Kisan Call Center at 1800-180-1551 for help.
+"What should farmers do to avoid money lenders?",Farmers should avail loan facilities from banks to save themselves from money lenders.
+"What types of banks provide loans to farmers?",Loan facilities are available through commercial banks regional rural banks and cooperative credit institutions.
+"What should farmers ensure regarding loan repayment?",Farmers should ensure timely repayment of bank loans.
+"What should farmers maintain regarding their loans?",Farmers should maintain proper records of their loans.
+"For what purpose should farmers use their bank loans?",Farmers should utilize the bank loan for the actual purpose for which it was taken.
+"What is the interest assistance available for crop loans?",Farmers receive a 3% rebate on interest for timely repayment of crop loans up to Rs. 3 lakh at an annual interest of 7%.
+"Is collateral needed for farm loans?",No collateral is needed for farm loans up to Rs. 1 lakh.
+"What is the Kisan Credit Card?",Farmers can avail crop loans through the Kisan Credit Card based on average crop sown over 3-5 years.
+"What coverage do Kisan Credit Card holders receive?",Kisan Credit Card holders are provided a cover of Rs. 50000 for accidental death.
+"What investment loans are available to farmers?",Loan facilities are available for investments in irrigation agricultural mechanization and land development.
+"Whom should farmers contact for credit assistance?",Farmers should contact the nearest Office of Taluka Agriculture Officer for credit assistance.
+"Where can farmers find more information about agriculture credit?",Farmers can visit the Agriculture Department's website at www.mahaagri.gov.in for more information.
+"What is the Kisan Call Center number for assistance?",Farmers can contact the Kisan Call Center at 1800-180-1551 for assistance.
+"Where can farmers find price information for their products?",Farmers can get price information at www.agmarknet.nic.in through Kisan Call Centres or via SMS.
+"When should harvesting and threshing be done?",Harvesting and threshing should be done at the appropriate time.
+"What should be done to produce before sale?",Proper grading packing and labeling should be done before sale for better prices.
+"Where should produce be transported for sale?",Transport produce to the proper market/Mandi for getting a remunerative price.
+"When is the best time to sell produce for maximum profit?",Storage of produce should be done for sale during the off-season for maximum profit.
+"What should farmers avoid to protect their income?",Farmers should avoid distress sales.
+"What can farmers do collectively to enhance marketing?",Farmers can form marketing cooperatives for better marketing facilities.
+"What outlets can marketing cooperatives open?",Marketing cooperatives can open retail and wholesale outlets.
+"What facilities can farmers operate to avoid distress sales?",Farmers can operate cold storages and warehouses to avoid distress sales.
+"What subsidy is available for godown construction?",Farmers can receive 25% subsidy of capital cost for godown capacity from 100 MT to 30000 MT under Grameen Bhandaran Yojana.
+"What subsidy is available for women farmers and cooperatives for godown construction?",Women farmers and their Self Help Groups receive a 33.33% subsidy of capital cost for godown construction.
+"What assistance is available for agricultural infrastructure projects?",25% of the capital cost of the project up to Rs. 50 lakh is available for agricultural infrastructure projects.
+"What additional subsidy is available for projects in hilly or tribal areas?",In hilly or tribal areas a subsidy of 33.33% of the capital cost up to Rs. 60 lakh is available for projects.
+"What is the financial assistance for awareness and food festivals?",Rs. 1 lakh is provided for each food festival under the Intensive Millets Promotion (INSIMP) scheme.
+
+"Whom should farmers contact for marketing assistance?",Farmers should contact the nearest Office of Taluka Agriculture Officer for marketing assistance.
+"Where can farmers find more information about agriculture marketing?",Farmers can visit the Agriculture Department's website at www.mahaagri.gov.in for more information.
+"What is the Kisan Call Center number for assistance?",Farmers can contact the Kisan Call Center at 1800-180-1551 for assistance.
+
+
+Name:Aryan is my NameName is Aryan
+My name is aryan:Aryan is my name
+New efficient way to grow corn:Israel has found new technology to deliver water to corn using drone which increases its growth efficiency
+Iowa farmers rapidly approaching the end of harvest season due to dry conditions:Iowa corn and soybean harvest is expected to wrap up in the next couple of weeks. The dry conditions from mid-August through October have meant no days off and an expedited harvest for most farmers. The crop progress and condition report for Oct. 7 through Oct. 13 showed that 81% of soybeans and 45% of corn harvested for grain have been harvested in the state. Stu Swanson, president of Iowa Corn Growers Association and a farmer in Wright County, said on Monday, he had about 100 acres of corn left to harvest. He finished his soybeans more than a week ago. Weve never been done this fast before, Swanson said. Swanson said he and his team started harvesting Sept. 22 ,and without any rain, havent had a day off since. He said yields are about the same as last year. What he lost at the beginning of the season due to a wet spring, balanced out with what he lost last season due to summer drought. The state climatologist report said this reporting period was the driest of the year, at nearly 10% of normal precipitation levels. This is following weeks of record dry and warm reports for the state. The conditions have made for a speedy harvest and better quality of grain, according to Swanson, but now hes looking at the soil and starting to worry. Were back to being concerned about how dry and hard (the soil) is and lots of fire concern, Swanson said.
+Farmers suggest govt to create 'model farm' to showcase profitable farming:A group of farmers on Thursday suggested the government to create a model farm giving information on ways to make farming profitable even in one to two-and-half acres land.These suggestions were made to Agriculture Minister Shivraj Singh Chouhan during a weekly interaction with the farmers and farm bodies here at the Pusa campus."Farmers also gave examples of farmers doing profitable farming in one-acre farms," an official statement said.They discussed providing water, use of fertilizers, making the soil healthy, problems due to losses in natural disasters, closure of sugar mills and problems of stray animals, etc.Farmers have also given suggestions for promoting Srianna (millets).The Union Minister promised to consider the suggestions seriously and try to resolve them.
+Ethanol Blending:"Farmers also gave examples of farmers doing profitable farming in one-acre farms," an official statement said.They discussed providing water, use of fertilizers, making the soil healthy, problems due to losses in natural disasters, closure of sugar mills and problems of stray animals, etc.Farmers have also given suggestions for promoting Srianna (millets).The Union Minister promised to consider the suggestions seriously and try to resolve them.
+Ethanol blending:"Farmers also gave examples of farmers doing profitable farming in one-acre farms," an official statement said.They discussed providing water, use of fertilizers, making the soil healthy, problems due to losses in natural disasters, closure of sugar mills and problems of stray animals, etc.Farmers have also given suggestions for promoting Srianna (millets).The Union Minister promised to consider the suggestions seriously and try to resolve them.
+
+Indias H1FY25 pulses imports rise 73 per cent to $2.18 billion:Volume of imports in tur, urad, desi chickpea up during the period, says tradeIndias pulses imports were up 73 per cent in value terms for the first half of current financial year.
+    Uttar Pradesh eyes Rs 3,000 cr in seed production to boost cash crops:The Uttar Pradesh (UP) government is looking to establish several seed parks across the state in order to achieve self-reliance in the production of improved seeds for cash crops, according to a government official. The state is targeting to produce seeds worth Rs 3,000 crore annually.The seed parks will be developed under the public-private partnership (PPP) model, covering an estimated 1,200 hectares across the state. Currently, UP spends Rs 3,000 crore each year importing seeds for major cash crops such as paddy, wheat, pulses, maize, barley, and oilseeds from other states.These seed parks will help reduce our annual seed procurement bill and also generate employment in rural areas, the official said.The seed parks will be spread across the states five regions: Western UP, Terai (Himalayan foothills), Central UP, Bundelkhand, and Eastern UP, each designed to suit the regions specific agro-climatic conditions.Six government farms, already equipped with basic facilities, were identified for such parks. These farms will be leased to PPP partners, with smaller seed parks covering 200-300 hectares and larger ones exceeding 400 hectares.UP, with Indias largest cultivable land area of 16.6 million hectares  over 80 per cent of which is irrigated  currently imports hybrid seeds primarily from Tamil Nadu and Andhra Pradesh. The state imports a significant percentage of seeds: 22 per cent of wheat, 51 per cent of paddy, 74 per cent of maize, 95 per cent of barley, 50 per cent of pulses, and 52 per cent of oilseeds.Despite its fertile land and extensive irrigation, UP lags in per-hectare yields, owing to outdated farming practices and the use of low-quality seeds. For example, wheat production in the state is 26.75 quintals per hectare, compared to Punjabs 40.35 quintals, and paddy production in UP is 37.35 quintals per hectare, compared to Haryanas 45.33 quintals. Improved seed quality could increase yields by 15-20 per cent.
