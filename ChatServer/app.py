@@ -3,78 +3,69 @@ from langchain_community.document_loaders import TextLoader
 from langchain.indexes import VectorstoreIndexCreator
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.chains import RetrievalQA
-from ibm_watsonx_ai.foundation_models import Model
-from ibm_watsonx_ai.metanames import GenTextParamsMetaNames as GenParams
-from ibm_watsonx_ai.foundation_models.utils.enums import ModelTypes, DecodingMethods
-import os
+from langchain.vectorstores import FAISS
+from flask_cors import CORS
 from dotenv import load_dotenv
-from langchain_ibm import WatsonxLLM
-from flask_cors import CORS 
-# Initialize Flask app
+import google.generativeai as genai
+import os
 import re
 
+# Initialize Flask app
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app)
 
 # Load environment variables
 load_dotenv()
-watsonx_api_key = os.getenv("WATSONX_APIKEY")
-print("Apikey",watsonx_api_key)
-# Parameters for Watsonx LLM
-parameters = {
-    "decoding_method": "sample",
-    "max_new_tokens": 200,
-    "min_new_tokens": 1,
-    "temperature": 0.5,
-    "top_k": 50,
-    "top_p": 1,
-}
+gemini_api_key = os.getenv("GEMINI_APIKEY")
 
-# Initialize IBM Watsonx LLM
-llm = WatsonxLLM(
-    model_id="meta-llama/llama-3-70b-instruct",
-    url="https://eu-de.ml.cloud.ibm.com",
-    project_id="07801c61-2551-43cb-ac7a-09a4d3a43c86",
-    params=parameters,
-)
+# Configure Google Generative AI client
+genai.configure(api_key=gemini_api_key)
+gemini_model = genai.GenerativeModel("gemini-1.5-flash")
 
-print("Model initialized successfully")
+# Initialize vector database and index
+vector_store = None
 
-# Load and create the index
-def load_text():
+def initialize_vector_store():
+    global vector_store
     text_name = 'data.txt'
     loaders = [TextLoader(text_name)]
     
+    # Use LangChain to create vectorstore with FAISS
     index = VectorstoreIndexCreator(
         embedding=HuggingFaceEmbeddings(model_name='all-MiniLM-L12-v2'), 
+        vectorstore_cls=FAISS,
         text_splitter=RecursiveCharacterTextSplitter(chunk_size=300, chunk_overlap=50)
     ).from_loaders(loaders)
     
-    return index
+    vector_store = index.vectorstore
 
-index = load_text()
+# Initialize vector store on startup
+initialize_vector_store()
 
-# Create a retrieval QA chain
-chain = RetrievalQA.from_chain_type(
-    llm=llm,
-    chain_type='stuff',
-    retriever=index.vectorstore.as_retriever(),
-    input_key='question'
-)
-
-# Define the API route
+# Define the query endpoint
 @app.route('/query', methods=['POST'])
 def query():
     data = request.json
     if 'question' not in data:
         return jsonify({"error": "No question found in the request"}), 400
 
-    prompt = data['question']
-    response = chain.run(prompt)
-    
-    return jsonify({"response": response})
+    query = data['question']
 
+    # Search for relevant chunks in the vector store
+    results = vector_store.similarity_search(query, k=5)  # Get top 5 matches
+    context = "\n".join([doc.page_content for doc in results])
+
+    # Combine the query with retrieved context
+    augmented_query = f"Context: {context}\n\nQuestion: {query}"
+
+    # Generate response using Gemini
+    try:
+        response = gemini_model.generate_content(augmented_query)
+        return jsonify({"response": response.text}), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+# Define the add data endpoint
 @app.route('/add', methods=['POST'])
 def add_data():
     data = request.json
@@ -83,28 +74,16 @@ def add_data():
 
     # Get the text to add and clean it
     text_to_add = data['text'].strip()  # Trim whitespace
-
-    # Remove unwanted characters (e.g., non-printable characters)
     cleaned_text = re.sub(r'[^\x20-\x7E]', '', text_to_add)  # Keep only printable ASCII characters
 
     # Avoid adding empty lines or unwanted content
-    if cleaned_text:  # Only proceed if the cleaned text is not empty
+    if cleaned_text:
         with open('data.txt', 'a') as file:
             file.write(cleaned_text + '\n')
-        
-        # Reload the index
-        global index
-        index = load_text()
 
-        # Update the chain
-        global chain  # Declare the chain variable as global
-        chain = RetrievalQA.from_chain_type(
-            llm=llm,
-            chain_type='stuff',
-            retriever=index.vectorstore.as_retriever(),
-            input_key='question'
-        )
-        
+        # Reload the vector store with the updated data
+        initialize_vector_store()
+
         return jsonify({"message": "Text added successfully"}), 200
     else:
         return jsonify({"error": "No valid text to add"}), 400
