@@ -15,7 +15,7 @@ import DashBoard from "./pages/DashBoard";
 import Register from "./pages/Register";
 import Search from "./pages/Search";
 import ChatInterface from "./pages/ChatInterface";
-
+import Blogs from "./pages/Blogs";
 const App = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -57,6 +57,7 @@ const App = () => {
             <Route path="register" element={<Register />} />
             <Route path="search" element={<Search />} />
             <Route path="asksahayak" element={<ChatInterface />} />
+            <Route path="blog" element={<Blogs />} />
           </Route>
           <Route path="/auth" element={<Auth />} />
         </Routes>

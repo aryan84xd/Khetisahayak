@@ -14,6 +14,7 @@ import {
   Dashboard as DashboardIcon,
   Search as SearchIcon,
   FaceRetouchingNatural as FaceRetouchingNaturalIcon,
+  AllInbox as AllInboxIcon,
 } from "@mui/icons-material";
 import { Outlet, NavLink } from "react-router-dom";
 
@@ -23,6 +24,7 @@ const Home = () => {
     { name: "Search", icon: <SearchIcon />, route: "/search" },
     { name: "Register", icon: <AddIcon />, route: "/register" },
     { name: "Ask Sahayak", icon: <FaceRetouchingNaturalIcon />, route: "/asksahayak" },
+    { name: "Blogs", icon: <AllInboxIcon/>, route: "/blog" },
   ];
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md")); // Check for medium and smaller screens

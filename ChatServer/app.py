@@ -72,11 +72,9 @@ def add_data():
     if 'text' not in data:
         return jsonify({"error": "No text found in the request"}), 400
 
-    # Get the text to add and clean it
     text_to_add = data['text'].strip()  # Trim whitespace
     cleaned_text = re.sub(r'[^\x20-\x7E]', '', text_to_add)  # Keep only printable ASCII characters
 
-    # Avoid adding empty lines or unwanted content
     if cleaned_text:
         with open('data.txt', 'a') as file:
             file.write(cleaned_text + '\n')
