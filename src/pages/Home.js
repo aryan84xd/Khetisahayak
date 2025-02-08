@@ -25,6 +25,7 @@ const Home = () => {
     { name: "Register", icon: <AddIcon />, route: "/register" },
     { name: "Ask Sahayak", icon: <FaceRetouchingNaturalIcon />, route: "/asksahayak" },
     { name: "Blogs", icon: <AllInboxIcon/>, route: "/blog" },
+    { name: "Blogs", icon: <AllInboxIcon/>, route: "/cropprediction" },
   ];
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md")); // Check for medium and smaller screens

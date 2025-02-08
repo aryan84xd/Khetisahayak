@@ -1,8 +1,12 @@
-langchain
-huggingface-hub
 flask
 flask-cors
 python-dotenv
+joblib
+pandas
+numpy
+supabase
+langchain
+huggingface-hub
 ibm-watsonx-ai
 langchain_community
 langchain_ibm

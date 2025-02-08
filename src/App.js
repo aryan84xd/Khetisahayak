@@ -16,6 +16,7 @@ import Register from "./pages/Register";
 import Search from "./pages/Search";
 import ChatInterface from "./pages/ChatInterface";
 import Blogs from "./pages/Blogs";
+import CropPrediction from "./pages/CropPrediction";
 const App = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -58,6 +59,7 @@ const App = () => {
             <Route path="search" element={<Search />} />
             <Route path="asksahayak" element={<ChatInterface />} />
             <Route path="blog" element={<Blogs />} />
+            <Route path="cropprediction" element={<CropPrediction />} />
           </Route>
           <Route path="/auth" element={<Auth />} />
         </Routes>
