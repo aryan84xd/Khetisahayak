@@ -15,6 +15,7 @@ import {
   Search as SearchIcon,
   FaceRetouchingNatural as FaceRetouchingNaturalIcon,
   AllInbox as AllInboxIcon,
+  Lightbulb as LightbulbIcon,
 } from "@mui/icons-material";
 import { Outlet, NavLink } from "react-router-dom";
 
@@ -25,7 +26,7 @@ const Home = () => {
     { name: "Register", icon: <AddIcon />, route: "/register" },
     { name: "Ask Sahayak", icon: <FaceRetouchingNaturalIcon />, route: "/asksahayak" },
     { name: "Blogs", icon: <AllInboxIcon/>, route: "/blog" },
-    { name: "Blogs", icon: <AllInboxIcon/>, route: "/cropprediction" },
+    { name: "Crop Prediction", icon: <LightbulbIcon/>, route: "/cropprediction" },
   ];
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md")); // Check for medium and smaller screens

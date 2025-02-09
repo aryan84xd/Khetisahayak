@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
   TextField,
   Button,
@@ -11,10 +11,37 @@ import {
   CircularProgress,
   Typography,
   Box,
-  Paper
+  Paper,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel
 } from '@mui/material';
+import supabase from '../utils/superbaseClient';
+
 
 const CropPredictionForm = () => {
+   useEffect(() => {
+      
+      getUser();
+    }, []);
+  const [user, setUser] = useState(null);
+  const getUser = async () => {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+    if (session) {
+      const user = session.user;
+      setUser(user);
+    }
+  };
+
+    const crops = [
+      'apple', 'banana', 'blackgram', 'chickpea', 'coconut', 'coffee', 'cotton', 'grapes', 'jute',
+      'kidneybeans', 'lentil', 'maize', 'mango', 'mothbeans', 'mungbean', 'muskmelon', 'orange',
+      'papaya', 'pigeonpeas', 'pomegranate', 'rice', 'watermelon'
+    ];
+
   const [formData, setFormData] = useState({
     N: '',
     P: '',
@@ -25,14 +52,29 @@ const CropPredictionForm = () => {
     rainfall: ''
   });
 
+  const [productionData, setProductionData] = useState({
+    crop_name: '',
+    production_value: ''
+  });
+
   const [loading, setLoading] = useState(false);
+  const [productionLoading, setProductionLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
+  const [productionError, setProductionError] = useState(null);
+  const [productionSuccess, setProductionSuccess] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: parseFloat(e.target.value)
+    });
+  };
+
+  const handleProductionChange = (e) => {
+    setProductionData({
+      ...productionData,
+      [e.target.name]: e.target.type === 'number' ? parseFloat(e.target.value) : e.target.value
     });
   };
 
@@ -42,55 +84,93 @@ const CropPredictionForm = () => {
     setError(null);
 
     try {
-        const predictResponse = await fetch('http://localhost:5001/predict_crop', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        });
+      const predictResponse = await fetch('http://localhost:5001/predict_crop', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
 
-        const responseData = await predictResponse.json();
-        
-        if (!predictResponse.ok) {
-            throw new Error(responseData.error || 'Failed to predict crop');
-        }
+      const responseData = await predictResponse.json();
+      
+      if (!predictResponse.ok) {
+        throw new Error(responseData.error || 'Failed to predict crop');
+      }
 
-        setResult(responseData);
-
-        // Only proceed with production update if we have a valid prediction
-        if (responseData.recommended_crop) {
-            const productionResponse = await fetch('http://localhost:5001/add_production', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    crop_name: responseData.recommended_crop,
-                    production_value: responseData.production_value
-                })
-            });
-
-            const productionData = await productionResponse.json();
-            
-            if (!productionResponse.ok) {
-                throw new Error(productionData.error || 'Failed to update production');
-            }
-        }
+      setResult(responseData);
 
     } catch (err) {
-        console.error('Error:', err);
-        setError(err.message || 'An unexpected error occurred');
+      console.error('Error:', err);
+      setError(err.message || 'An unexpected error occurred');
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-};
+  };
+
+  const handleProductionSubmit = async (e) => {
+    e.preventDefault();
+    setProductionLoading(true);
+    setProductionError(null);
+    setProductionSuccess(null);
+
+    try {
+      const productionResponse = await fetch('http://localhost:5001/add_production', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          crop_name: productionData.crop_name,
+          production_value: productionData.production_value
+        })
+      });
+
+      const productionResult = await productionResponse.json();
+      
+      if (!productionResponse.ok) {
+        throw new Error(productionResult.error || 'Failed to update production');
+      }
+
+      setProductionSuccess(productionResult.message);
+      setProductionData({ crop_name: '', production_value: '' }); // Reset form after success
+      
+    } catch (err) {
+      setProductionError(err.message || 'Failed to update production');
+    } finally {
+      setProductionLoading(false);
+    }
+    if (!user) {
+      setProductionError('User not authenticated. Please log in.');
+      setProductionLoading(false);
+      return;
+    }
+    try {
+      const { error } = await supabase.from('production_data').insert([
+        {
+          user_id: user.id,
+          crop_name: productionData.crop_name,
+          production_value: productionData.production_value
+        }
+      ]);
+
+      if (error) throw error;
+
+      setProductionSuccess('Production data added successfully!');
+      setProductionData({ crop_name: '', production_value: '' });
+    } catch (err) {
+      setProductionError(err.message || 'Failed to update production');
+    } finally {
+      setProductionLoading(false);
+    }
+  };
 
   return (
     <Box sx={{ maxWidth: 800, margin: 'auto', p: 2 }}>
-      <Card elevation={3}>
+      {/* Prediction Card */}
+      <Card elevation={3} sx={{ mb: 3 }}>
         <CardHeader 
           title="Crop Prediction System"
           subheader="Enter soil and environmental parameters to get crop recommendations"
@@ -237,8 +317,78 @@ const CropPredictionForm = () => {
           )}
         </CardContent>
       </Card>
+
+{/* Production Input Card */}
+<Card elevation={3}>
+        <CardHeader 
+          title="Add Production Value"
+          subheader="Select crop and enter production value"
+        />
+        <CardContent>
+          <form onSubmit={handleProductionSubmit}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <FormControl fullWidth required>
+                  <InputLabel id="crop-select-label">Crop</InputLabel>
+                  <Select
+                    labelId="crop-select-label"
+                    id="crop-select"
+                    name="crop_name"
+                    value={productionData.crop_name}
+                    label="Crop"
+                    onChange={handleProductionChange}
+                  >
+                    {crops.map((crop) => (
+                      <MenuItem key={crop} value={crop} sx={{ textTransform: 'capitalize' }}>
+                        {crop.charAt(0).toUpperCase() + crop.slice(1)}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  fullWidth
+                  label="Production Value"
+                  name="production_value"
+                  type="number"
+                  inputProps={{ step: "0.01" }}
+                  required
+                  value={productionData.production_value}
+                  onChange={handleProductionChange}
+                  variant="outlined"
+                />
+              </Grid>
+            </Grid>
+            <CardActions sx={{ justifyContent: 'flex-end', mt: 2 }}>
+              <Button 
+                type="submit" 
+                variant="contained" 
+                color="primary"
+                disabled={productionLoading}
+                startIcon={productionLoading && <CircularProgress size={20} />}
+              >
+                {productionLoading ? 'Submitting...' : 'Submit Production'}
+              </Button>
+            </CardActions>
+          </form>
+
+          {productionError && (
+            <Alert severity="error" sx={{ mt: 2 }}>
+              {productionError}
+            </Alert>
+          )}
+
+          {productionSuccess && (
+            <Alert severity="success" sx={{ mt: 2 }}>
+              {productionSuccess}
+            </Alert>
+          )}
+        </CardContent>
+      </Card>
     </Box>
   );
 };
+
 
 export default CropPredictionForm;
