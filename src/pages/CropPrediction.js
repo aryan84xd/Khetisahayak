@@ -84,7 +84,7 @@ const CropPredictionForm = () => {
     setError(null);
 
     try {
-      const predictResponse = await fetch('http://localhost:5001/predict_crop', {
+      const predictResponse = await fetch('http://localhost:5002/predict_crop', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ const CropPredictionForm = () => {
     setProductionSuccess(null);
 
     try {
-      const productionResponse = await fetch('http://localhost:5001/add_production', {
+      const productionResponse = await fetch('http://localhost:5002/add_production', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

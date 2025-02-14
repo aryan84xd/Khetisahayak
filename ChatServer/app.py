@@ -87,5 +87,5 @@ def add_data():
         return jsonify({"error": "No valid text to add"}), 400
 
 # Run the Flask app
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5001)

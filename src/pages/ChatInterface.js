@@ -41,7 +41,7 @@ export default function AIChat() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/query", {
+      const response = await fetch("http://localhost:5001/query", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
