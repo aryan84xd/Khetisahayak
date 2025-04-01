@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   TextField,
   Button,
@@ -15,16 +15,38 @@ import {
   Select,
   MenuItem,
   FormControl,
-  InputLabel
-} from '@mui/material';
-import supabase from '../utils/superbaseClient';
-
+  InputLabel,
+} from "@mui/material";
+import supabase from "../utils/superbaseClient";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 
 const CropPredictionForm = () => {
-   useEffect(() => {
-      
-      getUser();
-    }, []);
+  useEffect(() => {
+    const fetchCropData = async () => {
+      const { data: crops, error } = await supabase
+        .from("crops")
+        .select("crop_name, production")
+        .order("production", { ascending: false }); // Sort by production in descending order
+
+      if (error) {
+        console.error("Error fetching crops:", error);
+      } else {
+        setData(crops);
+      }
+      setLoading(false);
+    };
+
+    fetchCropData();
+    getUser();
+  }, []);
+
   const [user, setUser] = useState(null);
   const getUser = async () => {
     const {
@@ -36,25 +58,44 @@ const CropPredictionForm = () => {
     }
   };
 
-    const crops = [
-      'apple', 'banana', 'blackgram', 'chickpea', 'coconut', 'coffee', 'cotton', 'grapes', 'jute',
-      'kidneybeans', 'lentil', 'maize', 'mango', 'mothbeans', 'mungbean', 'muskmelon', 'orange',
-      'papaya', 'pigeonpeas', 'pomegranate', 'rice', 'watermelon'
-    ];
+  const crops = [
+    "apple",
+    "banana",
+    "blackgram",
+    "chickpea",
+    "coconut",
+    "coffee",
+    "cotton",
+    "grapes",
+    "jute",
+    "kidneybeans",
+    "lentil",
+    "maize",
+    "mango",
+    "mothbeans",
+    "mungbean",
+    "muskmelon",
+    "orange",
+    "papaya",
+    "pigeonpeas",
+    "pomegranate",
+    "rice",
+    "watermelon",
+  ];
 
   const [formData, setFormData] = useState({
-    N: '',
-    P: '',
-    K: '',
-    temperature: '',
-    humidity: '',
-    ph: '',
-    rainfall: ''
+    N: "",
+    P: "",
+    K: "",
+    temperature: "",
+    humidity: "",
+    ph: "",
+    rainfall: "",
   });
 
   const [productionData, setProductionData] = useState({
-    crop_name: '',
-    production_value: ''
+    crop_name: "",
+    production_value: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -63,18 +104,21 @@ const CropPredictionForm = () => {
   const [error, setError] = useState(null);
   const [productionError, setProductionError] = useState(null);
   const [productionSuccess, setProductionSuccess] = useState(null);
-
+  const [data, setData] = useState([]);
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: parseFloat(e.target.value)
+      [e.target.name]: parseFloat(e.target.value),
     });
   };
 
   const handleProductionChange = (e) => {
     setProductionData({
       ...productionData,
-      [e.target.name]: e.target.type === 'number' ? parseFloat(e.target.value) : e.target.value
+      [e.target.name]:
+        e.target.type === "number"
+          ? parseFloat(e.target.value)
+          : e.target.value,
     });
   };
 
@@ -84,26 +128,28 @@ const CropPredictionForm = () => {
     setError(null);
 
     try {
-      const predictResponse = await fetch('http://localhost:5002/predict_crop', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+      const predictResponse = await fetch(
+        "http://localhost:5002/predict_crop",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const responseData = await predictResponse.json();
-      
+
       if (!predictResponse.ok) {
-        throw new Error(responseData.error || 'Failed to predict crop');
+        throw new Error(responseData.error || "Failed to predict crop");
       }
 
       setResult(responseData);
-
     } catch (err) {
-      console.error('Error:', err);
-      setError(err.message || 'An unexpected error occurred');
+      console.error("Error:", err);
+      setError(err.message || "An unexpected error occurred");
     } finally {
       setLoading(false);
     }
@@ -116,66 +162,70 @@ const CropPredictionForm = () => {
     setProductionSuccess(null);
 
     try {
-      const productionResponse = await fetch('http://localhost:5002/add_production', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          crop_name: productionData.crop_name,
-          production_value: productionData.production_value
-        })
-      });
+      const productionResponse = await fetch(
+        "http://localhost:5002/add_production",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            crop_name: productionData.crop_name,
+            production_value: productionData.production_value,
+          }),
+        }
+      );
 
       const productionResult = await productionResponse.json();
-      
+
       if (!productionResponse.ok) {
-        throw new Error(productionResult.error || 'Failed to update production');
+        throw new Error(
+          productionResult.error || "Failed to update production"
+        );
       }
 
       setProductionSuccess(productionResult.message);
-      setProductionData({ crop_name: '', production_value: '' }); // Reset form after success
-      
+      setProductionData({ crop_name: "", production_value: "" }); // Reset form after success
     } catch (err) {
-      setProductionError(err.message || 'Failed to update production');
+      setProductionError(err.message || "Failed to update production");
     } finally {
       setProductionLoading(false);
     }
     if (!user) {
-      setProductionError('User not authenticated. Please log in.');
+      setProductionError("User not authenticated. Please log in.");
       setProductionLoading(false);
       return;
     }
     try {
-      const { error } = await supabase.from('production_data').insert([
+      const { error } = await supabase.from("production_data").insert([
         {
           user_id: user.id,
           crop_name: productionData.crop_name,
-          production_value: productionData.production_value
-        }
+          production_value: productionData.production_value,
+        },
       ]);
 
       if (error) throw error;
 
-      setProductionSuccess('Production data added successfully!');
-      setProductionData({ crop_name: '', production_value: '' });
+      setProductionSuccess("Production data added successfully!");
+      setProductionData({ crop_name: "", production_value: "" });
     } catch (err) {
-      setProductionError(err.message || 'Failed to update production');
+      setProductionError(err.message || "Failed to update production");
     } finally {
       setProductionLoading(false);
     }
   };
 
   return (
-    <Box sx={{ maxWidth: 800, margin: 'auto', p: 2 }}>
+    <Box sx={{ maxWidth: 800, margin: "auto", p: 2 }}>
       {/* Prediction Card */}
       <Card elevation={3} sx={{ mb: 3 }}>
-        <CardHeader 
+        <CardHeader
           title="Crop Prediction System"
           subheader="Enter soil and environmental parameters to get crop recommendations"
         />
-        
+
         <CardContent>
           <form onSubmit={handleSubmit}>
             <Grid container spacing={3}>
@@ -278,15 +328,15 @@ const CropPredictionForm = () => {
               </Grid>
             </Grid>
 
-            <CardActions sx={{ justifyContent: 'flex-end', mt: 2 }}>
-              <Button 
-                type="submit" 
-                variant="contained" 
+            <CardActions sx={{ justifyContent: "flex-end", mt: 2 }}>
+              <Button
+                type="submit"
+                variant="contained"
                 color="primary"
                 disabled={loading}
                 startIcon={loading && <CircularProgress size={20} />}
               >
-                {loading ? 'Predicting...' : 'Predict Crop'}
+                {loading ? "Predicting..." : "Predict Crop"}
               </Button>
             </CardActions>
           </form>
@@ -307,7 +357,8 @@ const CropPredictionForm = () => {
                   <strong>Recommended Crop:</strong> {result.recommended_crop}
                 </Typography>
                 <Typography variant="body1" gutterBottom>
-                  <strong>Probability:</strong> {(result.probability * 100).toFixed(2)}%
+                  <strong>Probability:</strong>{" "}
+                  {(result.probability * 100).toFixed(2)}%
                 </Typography>
                 <Typography variant="body1">
                   <strong>Production Value:</strong> {result.production_value}
@@ -317,10 +368,45 @@ const CropPredictionForm = () => {
           )}
         </CardContent>
       </Card>
+      <Box sx={{ width: "100%", maxWidth: 600, margin: "auto", p: 2 }}>
+        <Typography variant="h6" align="center" gutterBottom>
+          Crop Production Indicator
+        </Typography>
+        {loading ? (
+          <CircularProgress />
+        ) : (
+          <ResponsiveContainer width="100%" height={600}>
+            <BarChart
+              layout="vertical"
+              data={data}
+              margin={{ top: 20, left: 50, right: 20, bottom: 20 }}
+              barCategoryGap={5}
+            >
+              <XAxis
+                type="number"
+                label={{
+                  value: "Production (Metric Tons)",
+                  position: "insideBottom",
+                  dy: 10,
+                }}
+              />
+              <YAxis
+                dataKey="crop_name"
+                type="category"
+                width={120}
+                tick={{ angle: -10, textAnchor: "end" }}
+                interval={0}
+              />
+              <Tooltip formatter={(value) => `${value} Metric Tons`} />
+              <Bar dataKey="production" fill="#3f51b5" />
+            </BarChart>
+          </ResponsiveContainer>
+        )}
+      </Box>
 
-{/* Production Input Card */}
-<Card elevation={3}>
-        <CardHeader 
+      {/* Production Input Card */}
+      <Card elevation={3}>
+        <CardHeader
           title="Add Production Value"
           subheader="Select crop and enter production value"
         />
@@ -339,7 +425,11 @@ const CropPredictionForm = () => {
                     onChange={handleProductionChange}
                   >
                     {crops.map((crop) => (
-                      <MenuItem key={crop} value={crop} sx={{ textTransform: 'capitalize' }}>
+                      <MenuItem
+                        key={crop}
+                        value={crop}
+                        sx={{ textTransform: "capitalize" }}
+                      >
                         {crop.charAt(0).toUpperCase() + crop.slice(1)}
                       </MenuItem>
                     ))}
@@ -360,15 +450,15 @@ const CropPredictionForm = () => {
                 />
               </Grid>
             </Grid>
-            <CardActions sx={{ justifyContent: 'flex-end', mt: 2 }}>
-              <Button 
-                type="submit" 
-                variant="contained" 
+            <CardActions sx={{ justifyContent: "flex-end", mt: 2 }}>
+              <Button
+                type="submit"
+                variant="contained"
                 color="primary"
                 disabled={productionLoading}
                 startIcon={productionLoading && <CircularProgress size={20} />}
               >
-                {productionLoading ? 'Submitting...' : 'Submit Production'}
+                {productionLoading ? "Submitting..." : "Submit Production"}
               </Button>
             </CardActions>
           </form>
@@ -389,6 +479,5 @@ const CropPredictionForm = () => {
     </Box>
   );
 };
-
 
 export default CropPredictionForm;

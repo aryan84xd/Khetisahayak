@@ -1,17 +1,32 @@
 import React, { useState } from "react";
+
+
 import {
+  Container,
+  Paper,
+  Typography,
   TextField,
   Button,
-  Checkbox,
-  FormControlLabel,
-  Typography,
-  Container,
-  Box,
+  Grid,
+  FormControl,
+  InputLabel,
   Select,
   MenuItem,
-  Slider,
-} from "@mui/material";
+  Divider,
+  Box,
+  Switch,
+  FormGroup,
+  FormControlLabel,
+  InputAdornment,
+  CircularProgress,
+  Slider
+} from '@mui/material';
+import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import SaveIcon from '@mui/icons-material/Save';
 import supabase from "../utils/superbaseClient";
+import stateDistrictMap from "../components/statesWithDistricts";
 
 export default function MyEquipment() {
   const [equipment, setEquipment] = useState({
@@ -21,21 +36,31 @@ export default function MyEquipment() {
     category: "",
     age_years: "",
     rental_price: "",
-    location: "",
+    location: "", // Existing location field
+    village_name: "", // New field
+    district_name: "", // New field
+    state_name: "", // New field
     availability: true,
     for_rent: false,
     condition: 5,
-    image_urls: [], // Add this to initial state
+    image_urls: [],
   });
+
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [selectedState, setSelectedState] = useState("");
+  const [districts, setDistricts] = useState([]);
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setEquipment({
       ...equipment,
       [name]: type === "checkbox" ? checked : value,
     });
+    if (name === "state_name") {
+      setSelectedState(value);
+      setDistricts(stateDistrictMap[value] || []);
+      setEquipment({ ...equipment, state_name: value, district_name: "" });
+    }
   };
 
   const handleImageChange = (e) => {
@@ -129,108 +154,163 @@ export default function MyEquipment() {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ mt: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Register Your Equipment
-        </Typography>
-        <form onSubmit={handleSubmit}>
+    <Container maxWidth="md">
+  <Paper elevation={3} sx={{ p: 4, mt: 5, mb: 5 }}>
+    <Typography variant="h4" component="h1" gutterBottom align="center" color="primary" fontWeight="500">
+      Register Your Equipment
+    </Typography>
+    <Divider sx={{ mb: 4 }} />
+    
+    <form onSubmit={handleSubmit}>
+      <Grid container spacing={3}>
+        {/* Basic Information */}
+        <Grid item xs={12}>
+          <Typography variant="h6" color="text.secondary" gutterBottom>
+            Basic Information
+          </Typography>
+        </Grid>
+        
+        <Grid item xs={12} md={6}>
           <TextField
             fullWidth
-            margin="normal"
             label="Brand"
             name="brand"
             value={equipment.brand}
             onChange={handleChange}
             required
+            variant="outlined"
           />
+        </Grid>
+        
+        <Grid item xs={12} md={6}>
           <TextField
             fullWidth
-            margin="normal"
             label="Model"
             name="model"
             value={equipment.model}
             onChange={handleChange}
             required
+            variant="outlined"
           />
+        </Grid>
+        
+        <Grid item xs={12}>
           <TextField
             fullWidth
-            margin="normal"
             label="Description"
             name="description"
             multiline
-            rows={4}
+            rows={3}
             value={equipment.description}
             onChange={handleChange}
+            variant="outlined"
+            placeholder="Describe your equipment features, specifications, and condition"
           />
-          <Select
-            fullWidth
-            margin="normal"
-            label="Category"
-            name="category"
-            value={equipment.category}
-            onChange={handleChange}
-            displayEmpty
-          >
-            <MenuItem value="" disabled>
-              Select a Category
-            </MenuItem>
-            <MenuItem value="Harvester">Harvester</MenuItem>
-            <MenuItem value="Ploughs">Ploughs</MenuItem>
-            <MenuItem value="Harrows">Harrows</MenuItem>
-            <MenuItem value="Rotavators">Rotavators</MenuItem>
-            <MenuItem value="Seed Drills">Seed Drills</MenuItem>
-            <MenuItem value="Transplanters">Transplanters</MenuItem>
-            <MenuItem value="Sprinkler Systems">Sprinkler Systems</MenuItem>
-            <MenuItem value="Drip Irrigation Systems">
-              Drip Irrigation Systems
-            </MenuItem>
-            <MenuItem value="Combine Harvesters">Combine Harvesters</MenuItem>
-            <MenuItem value="Threshers">Threshers</MenuItem>
-            <MenuItem value="Sickle and Scythe">Sickle and Scythe</MenuItem>
-            <MenuItem value="Sprayers">Sprayers</MenuItem>
-            <MenuItem value="Dusters">Dusters</MenuItem>
-            <MenuItem value="Grain Dryers">Grain Dryers</MenuItem>
-            <MenuItem value="Chaff Cutters">Chaff Cutters</MenuItem>
-            <MenuItem value="Trailers">Trailers</MenuItem>
-            <MenuItem value="Tractors">Tractors</MenuItem>
-            <MenuItem value="Power Tillers">Power Tillers</MenuItem>
-            <MenuItem value="Sugarcane Harvesters">
-              Sugarcane Harvesters
-            </MenuItem>
-            <MenuItem value="Rice Combine Harvesters">
-              Rice Combine Harvesters
-            </MenuItem>
-          </Select>
+        </Grid>
+        
+        <Grid item xs={12} md={6}>
+          <FormControl fullWidth variant="outlined">
+            <InputLabel>Equipment Category</InputLabel>
+            <Select
+              label="Equipment Category"
+              name="category"
+              value={equipment.category}
+              onChange={handleChange}
+              displayEmpty
+            >
+              <MenuItem value="" disabled>
+                
+              </MenuItem>
+              <MenuItem value="Harvester">Harvester</MenuItem>
+              <MenuItem value="Ploughs">Ploughs</MenuItem>
+              <MenuItem value="Harrows">Harrows</MenuItem>
+              <MenuItem value="Rotavators">Rotavators</MenuItem>
+              <MenuItem value="Seed Drills">Seed Drills</MenuItem>
+              <MenuItem value="Transplanters">Transplanters</MenuItem>
+              <MenuItem value="Sprinkler Systems">Sprinkler Systems</MenuItem>
+              <MenuItem value="Drip Irrigation Systems">
+                Drip Irrigation Systems
+              </MenuItem>
+              <MenuItem value="Combine Harvesters">Combine Harvesters</MenuItem>
+              <MenuItem value="Threshers">Threshers</MenuItem>
+              <MenuItem value="Sickle and Scythe">Sickle and Scythe</MenuItem>
+              <MenuItem value="Sprayers">Sprayers</MenuItem>
+              <MenuItem value="Dusters">Dusters</MenuItem>
+              <MenuItem value="Grain Dryers">Grain Dryers</MenuItem>
+              <MenuItem value="Chaff Cutters">Chaff Cutters</MenuItem>
+              <MenuItem value="Trailers">Trailers</MenuItem>
+              <MenuItem value="Tractors">Tractors</MenuItem>
+              <MenuItem value="Power Tillers">Power Tillers</MenuItem>
+              <MenuItem value="Sugarcane Harvesters">
+                Sugarcane Harvesters
+              </MenuItem>
+              <MenuItem value="Rice Combine Harvesters">
+                Rice Combine Harvesters
+              </MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+
+        <Grid item xs={12} md={6}>
           <TextField
             fullWidth
-            margin="normal"
             label="Age in years"
             name="age_years"
             type="number"
             value={equipment.age_years}
             onChange={handleChange}
+            variant="outlined"
+            InputProps={{
+              endAdornment: <InputAdornment position="end">years</InputAdornment>,
+            }}
           />
-          <Box padding={2} border={1} borderColor={"grey.500"}>
-            <Typography id="equipment-condition-slider" gutterBottom>
-              Equipment Condition (1-10)
+        </Grid>
+
+        {/* Equipment Condition Slider */}
+        <Grid item xs={12}>
+          <Paper elevation={0} sx={{ p: 3, bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider', borderRadius: 2 }}>
+            <Typography id="equipment-condition-slider" gutterBottom variant="subtitle1" fontWeight="medium">
+              Equipment Condition
             </Typography>
-            <Slider
-              value={equipment.condition} // Current value of the slider
-              onChange={(event, newValue) =>
-                handleChange({ target: { name: "condition", value: newValue } })
-              } // Update state
-              aria-labelledby="equipment-condition-slider"
-              valueLabelDisplay="auto" // Display the value as a label
-              step={1} // Increment step
-              marks // Add marks for each step
-              min={1} // Minimum value
-              max={10} // Maximum value
-            />
-          </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ mr: 2 }}>
+                <SentimentVeryDissatisfiedIcon color="error" />
+              </Box>
+              <Slider
+                value={equipment.condition}
+                onChange={(event, newValue) =>
+                  handleChange({ target: { name: "condition", value: newValue } })
+                }
+                aria-labelledby="equipment-condition-slider"
+                valueLabelDisplay="auto"
+                step={1}
+                marks
+                min={1}
+                max={10}
+                sx={{ mx: 2 }}
+              />
+              <Box sx={{ ml: 2 }}>
+                <SentimentVerySatisfiedIcon color="success" />
+              </Box>
+            </Box>
+            <Typography variant="caption" color="text.secondary" align="center" display="block">
+              {equipment.condition < 4 ? 'Poor condition' : 
+               equipment.condition < 7 ? 'Average condition' : 
+               'Excellent condition'}
+            </Typography>
+          </Paper>
+        </Grid>
+
+        {/* Rental Information */}
+        <Grid item xs={12} sx={{ mt: 2 }}>
+          <Typography variant="h6" color="text.secondary" gutterBottom>
+            Rental Information
+          </Typography>
+        </Grid>
+        
+        <Grid item xs={12} md={6}>
           <TextField
             fullWidth
-            margin="normal"
             label="Rental Price"
             name="rental_price"
             type="number"
@@ -238,55 +318,167 @@ export default function MyEquipment() {
             value={equipment.rental_price}
             onChange={handleChange}
             required
+            variant="outlined"
+            InputProps={{
+              startAdornment: <InputAdornment position="start">₹</InputAdornment>,
+              endAdornment: <InputAdornment position="end">/day</InputAdornment>,
+            }}
           />
+        </Grid>
+        
+        <Grid item xs={12} md={6}>
+          <FormGroup row>
+            <FormControlLabel
+              control={
+                <Switch
+                  name="availability"
+                  checked={equipment.availability}
+                  onChange={handleChange}
+                  color="primary"
+                />
+              }
+              label="Available Now"
+            />
+            <FormControlLabel
+              control={
+                <Switch
+                  name="for_rent"
+                  checked={equipment.for_rent}
+                  onChange={handleChange}
+                  color="primary"
+                />
+              }
+              label="For Rent"
+            />
+          </FormGroup>
+        </Grid>
+
+        {/* Location Information */}
+        <Grid item xs={12} sx={{ mt: 2 }}>
+          <Typography variant="h6" color="text.secondary" gutterBottom>
+            Location Details
+          </Typography>
+        </Grid>
+        
+        <Grid item xs={12} md={6}>
           <TextField
             fullWidth
-            margin="normal"
-            label="Location"
+            label="Village Name"
+            name="village_name"
+            value={equipment.village_name}
+            onChange={handleChange}
+            required
+            variant="outlined"
+          />
+        </Grid>
+        
+        <Grid item xs={12} md={6}>
+          <TextField
+            fullWidth
+            label="Landmark/Location"
             name="location"
             value={equipment.location}
             onChange={handleChange}
+            variant="outlined"
+            placeholder="Nearby landmark for easy location"
           />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="availability"
-                checked={equipment.availability}
-                onChange={handleChange}
-              />
-            }
-            label="Availability"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                name="for_rent"
-                checked={equipment.for_rent}
-                onChange={handleChange}
-              />
-            }
-            label="For Rent"
-          />
-          <Button
-            variant="contained"
+        </Grid>
+        
+        <Grid item xs={12} md={6}>
+          <FormControl fullWidth variant="outlined">
+            <InputLabel>State</InputLabel>
+            <Select
+              label="State"
+              name="state_name"
+              value={selectedState}
+              onChange={handleChange}
+              displayEmpty
+              required
+            >
+              <MenuItem value="" disabled>
+                
+              </MenuItem>
+              {Object.keys(stateDistrictMap).map((state) => (
+                <MenuItem key={state} value={state}>
+                  {state}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+        
+        <Grid item xs={12} md={6}>
+          <FormControl fullWidth variant="outlined" disabled={!selectedState}>
+            <InputLabel>District</InputLabel>
+            <Select
+              label="District"
+              name="district_name"
+              value={equipment.district_name}
+              onChange={handleChange}
+              displayEmpty
+              required
+            >
+              <MenuItem value="" disabled>
+                
+              </MenuItem>
+              {districts.map((district) => (
+                <MenuItem key={district} value={district}>
+                  {district}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+
+        {/* Image Upload */}
+        <Grid item xs={12} sx={{ mt: 2 }}>
+          <Typography variant="h6" color="text.secondary" gutterBottom>
+            Equipment Images
+          </Typography>
+        </Grid>
+        
+        <Grid item xs={12}>
+          <Box
+            sx={{
+              border: '2px dashed',
+              borderColor: 'primary.light',
+              borderRadius: 2,
+              p: 3,
+              textAlign: 'center',
+              bgcolor: 'background.paper',
+              cursor: 'pointer'
+            }}
             component="label"
-            fullWidth
-            sx={{ mt: 2, mb: 2 }}
           >
-            Upload Images
             <input type="file" hidden multiple onChange={handleImageChange} />
-          </Button>
+            <CloudUploadIcon color="primary" sx={{ fontSize: 40, mb: 1 }} />
+            <Typography variant="subtitle1" gutterBottom>
+              Drag and drop images here or click to browse
+            </Typography>
+            <Typography variant="caption" color="text.secondary">
+              Upload clear images from different angles (max 5 images)
+            </Typography>
+          </Box>
+        </Grid>
+
+        {/* Submit Button */}
+        <Grid item xs={12} sx={{ mt: 4 }}>
           <Button
             type="submit"
             variant="contained"
             color="primary"
             fullWidth
+            size="large"
             disabled={loading}
+            sx={{ py: 1.5, fontSize: '1.1rem' }}
+            startIcon={loading ? <CircularProgress size={20} color="inherit" /> : <SaveIcon />}
           >
-            {loading ? "Submitting..." : "Submit"}
+            {loading ? "Submitting..." : "Register Equipment"}
           </Button>
-        </form>
-      </Box>
-    </Container>
+        </Grid>
+      </Grid>
+    </form>
+  </Paper>
+</Container>
   );
 }

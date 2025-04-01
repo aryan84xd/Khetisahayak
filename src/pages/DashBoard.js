@@ -276,8 +276,8 @@ export default function DashBoard() {
                   color="text.secondary"
                   sx={{ fontWeight: "bold" }}
                 >
-                  Location:{" "}
-                  <span style={{ fontWeight: "normal" }}>{item.location}</span>
+                  Village:{" "}
+                  <span style={{ fontWeight: "normal" }}>{item?.village_name || "NA"}</span>
                 </Typography>
               </CardContent>
               <CardActions sx={{ justifyContent: "center" }}>
@@ -424,7 +424,7 @@ export default function DashBoard() {
                   sx={{ fontWeight: "bold" }}
                 >
                   Location:{" "}
-                  <span style={{ fontWeight: "normal" }}>{item.location}</span>
+                  <span style={{ fontWeight: "normal" }}>{item?.location || "NA"}</span>
                 </Typography>
               </CardContent>
               <CardActions sx={{ justifyContent: "center" }}>
@@ -571,7 +571,7 @@ export default function DashBoard() {
                   sx={{ fontWeight: "bold" }}
                 >
                   Location:{" "}
-                  <span style={{ fontWeight: "normal" }}>{item.location}</span>
+                  <span style={{ fontWeight: "normal" }}>{item?.village_name || "N/A"}</span>
                 </Typography>
               </CardContent>
               <CardActions sx={{ justifyContent: "center" }}>
@@ -737,9 +737,48 @@ export default function DashBoard() {
                 marginBottom: 0.5,
               }}
             >
-              Location:{" "}
+              Landmark/Location:{" "}
               <span style={{ fontWeight: "normal" }}>
                 {selectedEquipment?.location || "N/A"}
+              </span>
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+                fontSize: "1rem",
+                marginBottom: 0.5,
+              }}
+            >
+              Village:{" "}
+              <span style={{ fontWeight: "normal" }}>
+                {selectedEquipment?.village_name || "N/A"}
+              </span>
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+                fontSize: "1rem",
+                marginBottom: 0.5,
+              }}
+            >
+              District:{" "}
+              <span style={{ fontWeight: "normal" }}>
+                {selectedEquipment?.district_name || "N/A"}
+              </span>
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+                fontSize: "1rem",
+                marginBottom: 0.5,
+              }}
+            >
+              State:{" "}
+              <span style={{ fontWeight: "normal" }}>
+                {selectedEquipment?.state_name || "N/A"}
               </span>
             </Typography>
             <Typography

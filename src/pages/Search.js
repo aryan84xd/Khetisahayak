@@ -21,7 +21,7 @@ import {
   DialogTitle,
 } from "@mui/material";
 import supabase from "../utils/superbaseClient"; // Ensure Supabase is configured
-
+import stateDistrictMap from "../components/statesWithDistricts";
 export default function Search() {
   const [equipment, setEquipment] = React.useState([]);
   const [filteredEquipment, setFilteredEquipment] = React.useState([]);
@@ -32,6 +32,10 @@ export default function Search() {
   const [startDate, setStartDate] = React.useState(dayjs()); // Start date
   const [endDate, setEndDate] = React.useState(dayjs()); // End date
   const [refreshTrigger, setRefreshTrigger] = React.useState(0);
+  const [state, setState] = React.useState("");
+  const [district, setDistrict] = React.useState("");
+  const [districts, setDistricts] = React.useState([]); // Stores available districts for selected state
+
   // Function to get the image URL
   const getImageUrl = async (path) => {
     const { data, error } = await supabase.storage
@@ -88,7 +92,7 @@ export default function Search() {
     filterEquipment(category, value);
   };
 
-  const filterEquipment = (category, maxPrice) => {
+  const filterEquipment = (category, maxPrice, state, district) => {
     let filtered = equipment;
 
     // Filter by category
@@ -103,9 +107,33 @@ export default function Search() {
       );
     }
 
+    // Filter by state
+    if (state) {
+      filtered = filtered.filter((item) => item.state === state);
+    }
+
+    // Filter by district
+    if (district) {
+      filtered = filtered.filter((item) => item.district === district);
+    }
+
     setFilteredEquipment(filtered);
   };
+  const handleStateChange = (event) => {
+    const selectedState = event.target.value;
+    setState(selectedState);
+    setDistrict(""); // Reset district when state changes
 
+   
+    setDistricts(stateDistrictMap[selectedState] || []);
+    filterEquipment(category, maxPrice, selectedState, district);
+  };
+
+  const handleDistrictChange = (event) => {
+    const selectedDistrict = event.target.value;
+    setDistrict(selectedDistrict);
+    filterEquipment(category, maxPrice, state, selectedDistrict);
+  };
   const handleOpenDialog = (item) => {
     setSelectedEquipment(item);
     setOpen(true);
@@ -318,6 +346,7 @@ export default function Search() {
           </MenuItem>
           {/* Add more categories as needed */}
         </TextField>
+
         <TextField
           label="Max Price"
           type="number"
@@ -326,20 +355,53 @@ export default function Search() {
           fullWidth
         />
       </Box>
+      <Box sx={{ display: "flex", gap: 2, marginBottom: 4 }}>
+      <TextField
+        select
+        label="State"
+        value={state}
+        onChange={handleStateChange}
+        fullWidth
+      >
+        <MenuItem value="">Select State</MenuItem>
+        {Object.keys(stateDistrictMap).map((stateName) => (
+          <MenuItem key={stateName} value={stateName}>
+            {stateName}
+          </MenuItem>
+        ))}
+      </TextField>
+
+      {/* District Dropdown */}
+      <TextField
+        select
+        label="District"
+        value={district}
+        onChange={handleDistrictChange}
+        fullWidth
+        disabled={!state}  // Disable district dropdown if state is not selected
+      >
+        <MenuItem value="">Select District</MenuItem>
+        {districts.map((dist) => (
+          <MenuItem key={dist} value={dist}>
+            {dist}
+          </MenuItem>
+        ))}
+      </TextField>
+    </Box>
       <Box
-                sx={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-                  gap: 4,
-                  margin: {
-                    xs: "16px", // Extra small screens
-                    sm: "24px", // Small screens
-                    md: "32px", // Medium screens
-                    lg: "48px", // Large screens
-                  },
-                  padding: "16px", // Added padding to help visualize space
-                }}
-              >
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gap: 4,
+          margin: {
+            xs: "16px", // Extra small screens
+            sm: "24px", // Small screens
+            md: "32px", // Medium screens
+            lg: "48px", // Large screens
+          },
+          padding: "16px", // Added padding to help visualize space
+        }}
+      >
         {filteredEquipment.map((item) => (
           <Box item key={item.id} xs={12} sm={6} md={4}>
             <Card sx={{ boxShadow: 3, borderRadius: 2 }}>
@@ -403,13 +465,26 @@ export default function Search() {
                     ₹{item.rental_price}
                   </span>
                 </Typography>
+
                 <Typography
                   variant="body2"
                   color="text.secondary"
                   sx={{ fontWeight: "bold" }}
                 >
-                  Location:{" "}
-                  <span style={{ fontWeight: "normal" }}>{item.location}</span>
+                  District:{" "}
+                  <span style={{ fontWeight: "normal" }}>
+                    {item?.district_name || "NA"}
+                  </span>
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ fontWeight: "bold" }}
+                >
+                  State:{" "}
+                  <span style={{ fontWeight: "normal" }}>
+                    {item?.state_name || "NA"}
+                  </span>
                 </Typography>
               </CardContent>
               <CardActions sx={{ justifyContent: "center" }}>
@@ -535,9 +610,48 @@ export default function Search() {
                 marginBottom: 0.5,
               }}
             >
-              Location:{" "}
+              Landmark:{" "}
               <span style={{ fontWeight: "normal" }}>
                 {selectedEquipment?.location || "N/A"}
+              </span>
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+                fontSize: "1rem",
+                marginBottom: 0.5,
+              }}
+            >
+              Village:{" "}
+              <span style={{ fontWeight: "normal" }}>
+                {selectedEquipment?.village_name || "N/A"}
+              </span>
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+                fontSize: "1rem",
+                marginBottom: 0.5,
+              }}
+            >
+              District:{" "}
+              <span style={{ fontWeight: "normal" }}>
+                {selectedEquipment?.district_name || "N/A"}
+              </span>
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontWeight: "bold",
+                fontSize: "1rem",
+                marginBottom: 0.5,
+              }}
+            >
+              State:{" "}
+              <span style={{ fontWeight: "normal" }}>
+                {selectedEquipment?.state_name || "N/A"}
               </span>
             </Typography>
             <Typography
