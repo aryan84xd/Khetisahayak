@@ -21,6 +21,7 @@ export default function DashBoard() {
   const [equipment, setEquipment] = useState([]);
   const [open, setOpen] = useState(false);
   const [selectedEquipment, setSelectedEquipment] = useState(null);
+  const [selectedBookingId, setSelectedBookingId] = useState(null);
   const [rentedEquipment, setRentedEquipment] = useState([]);
   const [rentedOutEquipment, setRentedOutEquipment] = useState([]);
   const navigate = useNavigate(); // Initialize the navigate function
@@ -161,12 +162,74 @@ export default function DashBoard() {
 
   const handleOpen = (item) => {
     setSelectedEquipment(item);
+    console.log(item);
     setOpen(true);
   };
 
   const handleClose = () => {
     setSelectedEquipment(null);
     setOpen(false);
+  };
+  const handleReceiveEquipment = async (equipmentId) => {
+    try {
+      if (!equipmentId) {
+        console.error("Missing equipmentId");
+        return;
+      }
+
+      // 🔍 1. Fetch the active booking related to this equipment
+      const { data: bookingData, error: bookingFetchError } = await supabase
+        .from("bookings")
+        .select("id")
+        .eq("equipment_id", equipmentId)
+        .eq("status", "rented")
+        .single();
+      console.log(bookingData, "Booking Data");
+      if (bookingFetchError || !bookingData) {
+        console.error(
+          "Error fetching active booking:",
+          bookingFetchError?.message || "No active booking found"
+        );
+        return;
+      }
+
+      const bookingId = bookingData.id;
+      console.log(bookingId, "Booking ID");
+      // ✅ 2. Update equipment availability
+      const { error: updateError } = await supabase
+        .from("user_equipment")
+        .update({ availability: true })
+        .eq("id", equipmentId);
+
+      if (updateError) throw updateError;
+
+      // ✅ 3. Update booking status to "completed"
+      const { data: updatedBooking, error: bookingUpdateError } = await supabase
+        .from("bookings")
+        .update({
+          status: "completed",
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", bookingId)
+        .select("*"); // 👈 This returns the updated row(s)
+
+      console.log("Updated Booking:", updatedBooking);
+
+      if (bookingUpdateError) {
+        console.error(
+          "Error updating booking status:",
+          bookingUpdateError.message
+        );
+      }
+
+      console.log("Equipment received and booking completed successfully!");
+      setRentedOutEquipment((prev) => prev.filter((item) => item.id !== equipmentId));
+    } catch (error) {
+      console.error(
+        "Error updating equipment or booking status:",
+        error.message
+      );
+    }
   };
 
   // Helper function to format date
@@ -277,7 +340,9 @@ export default function DashBoard() {
                   sx={{ fontWeight: "bold" }}
                 >
                   Village:{" "}
-                  <span style={{ fontWeight: "normal" }}>{item?.village_name || "NA"}</span>
+                  <span style={{ fontWeight: "normal" }}>
+                    {item?.village_name || "NA"}
+                  </span>
                 </Typography>
               </CardContent>
               <CardActions sx={{ justifyContent: "center" }}>
@@ -424,7 +489,9 @@ export default function DashBoard() {
                   sx={{ fontWeight: "bold" }}
                 >
                   Location:{" "}
-                  <span style={{ fontWeight: "normal" }}>{item?.location || "NA"}</span>
+                  <span style={{ fontWeight: "normal" }}>
+                    {item?.location || "NA"}
+                  </span>
                 </Typography>
               </CardContent>
               <CardActions sx={{ justifyContent: "center" }}>
@@ -571,7 +638,9 @@ export default function DashBoard() {
                   sx={{ fontWeight: "bold" }}
                 >
                   Location:{" "}
-                  <span style={{ fontWeight: "normal" }}>{item?.village_name || "N/A"}</span>
+                  <span style={{ fontWeight: "normal" }}>
+                    {item?.village_name || "N/A"}
+                  </span>
                 </Typography>
               </CardContent>
               <CardActions sx={{ justifyContent: "center" }}>
@@ -847,6 +916,15 @@ export default function DashBoard() {
           >
             Close
           </Button>
+          {selectedEquipment && !selectedEquipment.availability && (
+            <Button
+              onClick={() => handleReceiveEquipment(selectedEquipment.id)}
+              variant="contained"
+              color="success"
+            >
+              Receive
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </Container>

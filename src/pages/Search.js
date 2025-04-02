@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect } from "react";
 import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -48,7 +49,7 @@ export default function Search() {
     return URL.createObjectURL(data); // Convert to a URL object to use in img tags
   };
 
-  React.useEffect(() => {
+ useEffect(() => {
     const fetchEquipment = async () => {
       const { data, error } = await supabase
         .from("user_equipment")
@@ -81,59 +82,52 @@ export default function Search() {
     fetchEquipment();
   }, [refreshTrigger]);
 
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
-    filterEquipment(event.target.value, maxPrice);
-  };
-
-  const handleMaxPriceChange = (event) => {
-    const value = event.target.value;
-    setMaxPrice(value);
-    filterEquipment(category, value);
-  };
-
-  const filterEquipment = (category, maxPrice, state, district) => {
-    let filtered = equipment;
-
-    // Filter by category
+  useEffect(() => {
+    let filtered = [...equipment];
+  
     if (category) {
       filtered = filtered.filter((item) => item.category === category);
     }
-
-    // Filter by price - ensure price is numeric and apply filter
+  
     if (maxPrice && !isNaN(maxPrice)) {
       filtered = filtered.filter(
         (item) => parseFloat(item.rental_price) <= parseFloat(maxPrice)
       );
     }
-
-    // Filter by state
+  
     if (state) {
-      filtered = filtered.filter((item) => item.state === state);
+      filtered = filtered.filter((item) => item.state_name === state);
     }
-
-    // Filter by district
+  
     if (district) {
-      filtered = filtered.filter((item) => item.district === district);
+      filtered = filtered.filter((item) => item.district_name === district);
     }
-
+  
     setFilteredEquipment(filtered);
+  }, [category, maxPrice, state, district, equipment]); // Trigger whenever any dependency changes
+  
+
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
   };
+  
+  const handleMaxPriceChange = (event) => {
+    setMaxPrice(event.target.value);
+  };
+  
   const handleStateChange = (event) => {
     const selectedState = event.target.value;
     setState(selectedState);
     setDistrict(""); // Reset district when state changes
-
-   
     setDistricts(stateDistrictMap[selectedState] || []);
-    filterEquipment(category, maxPrice, selectedState, district);
   };
-
+  
   const handleDistrictChange = (event) => {
-    const selectedDistrict = event.target.value;
-    setDistrict(selectedDistrict);
-    filterEquipment(category, maxPrice, state, selectedDistrict);
+    setDistrict(event.target.value);
   };
+  
+ 
+  
   const handleOpenDialog = (item) => {
     setSelectedEquipment(item);
     setOpen(true);
@@ -143,6 +137,7 @@ export default function Search() {
     setOpen(false);
     setSelectedEquipment(null);
   };
+  
 
   const handleBooking = async () => {
     // Input validation checks
@@ -238,7 +233,7 @@ export default function Search() {
             start_date: startDate.format("YYYY-MM-DD"),
             end_date: endDate.format("YYYY-MM-DD"),
             cost: totalCost,
-            status: "pending",
+            status: "rented",
           },
         ])
         .select();
